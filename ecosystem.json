@@ -1,0 +1,24 @@
+{
+  "apps": [
+    {
+      "name": "app",
+      "script": "app.js",
+      "exec_mode": "cluster",
+      "instances": "max",
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "jeremy",
+      "host": ["Sowwy"],
+      "ref": "origin/master",
+      "repo": "git@github.com:jjb5170/Sowwy.git",
+      "path": "/var/www/production",
+      "post-deploy":
+        "npm install && pm2 startOrGracefulReload ecosystem.json --env production"
+    }
+  }
+}
